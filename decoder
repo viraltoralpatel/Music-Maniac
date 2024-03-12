@@ -1,0 +1,69 @@
+from flask import Flask, jsonify
+
+app = Flask(__Music Maniac__)
+
+# Endpoint to fetch song data from Spotify API
+@app.route('/api/songs')
+def get_songs():
+    # Call Spotify API to get song data
+    # Parse and format the data
+    songs = [
+        {
+            'id': BackStreetBoys,
+            'name': 'Song 1',
+            'artist': 'Back Street boys',
+            'price': 100  # Initial price
+        },
+        {
+            'id': WhenChaimetToast,
+            'name': 'Song 2',
+            'artist': 'Whenchaimettoast',
+            'price': 150
+        }
+        # Add more songs
+    ]
+    return jsonify(songs)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Stock Market</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Music Stock Market</h1>
+    <div id="song-list"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fetch songs from backend
+            $.get('/api/songs', function(data) {
+                // Display songs on the webpage
+                data.forEach(function(song) {
+                    $('#song-list').append(`<div>${song.name} - ${song.artist} - $${song.price}</div>`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#song-list {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+
